@@ -36,8 +36,7 @@ class UI{
 
         //Timeout
         setTimeout(function(){
-            document.querySelector('.alert').remove()
-        }, 3000);
+            document.querySelector('.alert').remove()}, 3000);
     }
 
     clearForm(){
@@ -60,7 +59,7 @@ class Store{
 
         if(localStorage.getItem('books') === null){
             books = [];
-        }else{
+        } else {
             books = JSON.parse(localStorage.getItem('books'));
         }
 
@@ -69,20 +68,23 @@ class Store{
 
     static displayBooks(){
         const books = Store.getBooks();
+        const ui = new UI;
+
         books.forEach(element => {
-            const ui = new UI;
             ui.addBookToList(element);
         });
     }
 
     static addBook(book){
         const books = Store.getBooks();
+
         books.push(book);
         localStorage.setItem('books', JSON.stringify(books));
     }
 
     static removeBook(isbn, index){
         const books = Store.getBooks();
+        
         books.forEach(element => {
             if(element.isbn === isbn){
             books.splice(index, 1);
